@@ -1,0 +1,1 @@
+# Letterboxd Rotten Tomatoes Addon
