@@ -19,7 +19,7 @@ function GetString (url)
     Httpreq.send(null);
     return Httpreq.responseText;          
 }
-var RTScoreAndLink = JSON.parse(GetString('https://www.omdbapi.com/?apikey=1660bf2d&tomatoes=true&i=' + IMDbID));
+var RTScoreAndLink = JSON.parse(GetString('https://www.omdbapi.com/?apikey=' + OMDbAPIKey + '&tomatoes=true&i=' + IMDbID));
 
 TomatoURL = RTScoreAndLink.tomatoURL.replace('http://', 'https://');
 
@@ -32,31 +32,65 @@ button.style.marginLeft = "3px"; // Give it a space
 var footer = document.getElementsByClassName("micro-button track-event")[1];
 footer.parentNode.insertBefore(button, footer.nextSibling); // Add it with the IMDB and TMDB buttons
 
-// Set the report flag's margin to 0 so it's not shoved to a new line as a 
-// result of out new button
-var flag = document.getElementsByClassName("report-link has-icon icon-report tooltip tooltip-close-on-click cboxElement")[0];
-flag.style.marginLeft = "0";
+// Set the report flag's margin to 0 so it's not shoved to a new line as a result of our new button
+//var flag = document.getElementsByClassName("report-link has-icon icon-report tooltip tooltip-close-on-click cboxElement")[0];
+//flag.style.marginLeft = "0";
 
 // Get the JSON from the movie's website on Rotten Tomatoes,
 // and then (and to) determine the icon type
 var RTJSON = GetString(TomatoURL);
-RTJSON = RTJSON.substring(RTJSON.indexOf('window.mpscall = ') + 17);
-RTJSON = RTJSON.substring(0, RTJSON.indexOf(';'));
-RTJSON = JSON.parse(RTJSON);
 
-if (RTJSON['cag[certified_fresh]'] == 1) // 1 = yes, certified
+// On certain computers, the website is loaded differently
+// Idk man, this is my first real project with js
+// I have no idea what I'm doing
+// If it works, it works
+if (RTJSON.includes('mpscall['))
 {
-    AppendLogoAndPercent(certifiedLogo);
-}
-else
-{
-    if (RTJSON['cag[fresh_rotten]'] == "fresh")
+    var isCertified = RTJSON; // 1 = certified, 0 = not
+    var fresh_rotten = RTJSON;
+
+    isCertified = isCertified.substring(isCertified.indexOf('certified_fresh') + 20);
+    isCertified = isCertified.substring(0, isCertified.indexOf('"'));
+
+    fresh_rotten = fresh_rotten.substring(fresh_rotten.indexOf('fresh_rotten') + 17);
+    fresh_rotten = fresh_rotten.substring(0, fresh_rotten.indexOf('"'));
+
+    if (isCertified == 1)
     {
-        AppendLogoAndPercent(freshLogo);
+        AppendLogoAndPercent(certifiedLogo);
     }
     else
     {
-        AppendLogoAndPercent(rottenLogo);
+        if (fresh_rotten == "fresh")
+        {
+            AppendLogoAndPercent(freshLogo);
+        }
+        else
+        {
+            AppendLogoAndPercent(rottenLogo);
+        }
+    }
+}
+else
+{
+    RTJSON = RTJSON.substring(RTJSON.indexOf('window.mpscall = ') + 17);
+    RTJSON = RTJSON.substring(0, RTJSON.indexOf(';'));
+    RTJSON = JSON.parse(RTJSON);
+
+    if (RTJSON['cag[certified_fresh]'] == 1) // 1 = yes, certified
+    {
+        AppendLogoAndPercent(certifiedLogo);
+    }
+    else
+    {
+        if (RTJSON['cag[fresh_rotten]'] == "fresh")
+        {
+            AppendLogoAndPercent(freshLogo);
+        }
+        else
+        {
+            AppendLogoAndPercent(rottenLogo);
+        }
     }
 }
 
