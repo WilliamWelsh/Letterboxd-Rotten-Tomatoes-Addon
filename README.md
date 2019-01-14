@@ -1,14 +1,16 @@
 # Letterboxd Rotten Tomatoes Addon
 
-#### Overview
+## Overview
 
 This is a Chrome extension that adds two features to [Letterboxd](https://letterboxd.com). You can see the score & tomato type, and a button added beside the IMDB and TMDB micro-buttons at the bottom that will link you to the film's Rotten Tomato page.
 
-#### Image
+## Image
 
 ![Image](https://i.imgur.com/fEHsYn1.png)
 
-#### Installing
+
+
+## Installing
 
 To install this, simply click "Add to Chrome" on the [Chrome Web Store](https://chrome.google.com/webstore/detail/letterboxd-rotten-tomatoe/gbagfhlcandjadfocmenciejcgncjmfd).
 
@@ -16,7 +18,9 @@ Link: [https://chrome.google.com/webstore/detail/letterboxd-rotten-tomatoe/gbagf
 
 ![Example](https://i.imgur.com/wn9Ydl8.png)
 
-#### Installing/Editing Yourself
+
+
+## Installing/Editing Yourself
 
 First, clone the repository.
 
