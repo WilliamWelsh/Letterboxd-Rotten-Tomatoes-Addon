@@ -2,7 +2,7 @@
   "manifest_version": 2,
  
   "name": "Letterboxd Rotten Tomatoes Addon",
-  "version": "1.7",
+  "version": "1.8",
   "description": "Adds Rotten Tomatoes features to Letterboxd.com",
   
   "permissions": [
@@ -11,16 +11,16 @@
   ],
   
   "icons": {
-		"16": "images/tomato.png",
-		"32": "images/tomato.png",
-		"48": "images/tomato.png",
-		"128": "images/tomato.png"
+		"16": "images/icon-16.png",
+		"32": "images/icon-32.png",
+		"48": "images/icon-48.png",
+		"128": "images/icon-128.png"
     },
  
   "content_scripts": 
     [
         {
-            "matches":["https://letterboxd.com/film*"],
+            "matches":["https://letterboxd.com/film/*"],
             "js":["content.js"],
             "run_at": "document_end"
         }

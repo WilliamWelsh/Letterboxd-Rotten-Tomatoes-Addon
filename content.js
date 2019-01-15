@@ -1,5 +1,6 @@
 var OMDbAPIKey = ""; // http://www.omdbapi.com/apikey.aspx
 
+// Logos
 var certifiedLogo = "https://www.rottentomatoes.com/assets/pizza-pie/images/icons/global/cf-lg.3c29eff04f2.png";
 var freshLogo = "https://www.rottentomatoes.com/assets/pizza-pie/images/icons/global/new-fresh-lg.12e316e31d2.png";
 var rottenLogo = "https://www.rottentomatoes.com/assets/pizza-pie/images/icons/global/new-rotten-lg.ecdfcf9596f.png";
@@ -7,9 +8,6 @@ var rottenLogo = "https://www.rottentomatoes.com/assets/pizza-pie/images/icons/g
 // Get the IMDB href button's <a> href (which contains the IMDB ID)
 var IMDbID = document.getElementsByClassName("micro-button track-event")[0].href;
 IMDbID = IMDbID.replace('http://www.imdb.com/title/', '').replace('/maindetails', '');
-
-// The URL of the movie on Rotten Tomatoes
-var TomatoURL;
 
 // Get a website as a string
 function GetString (url)
@@ -19,9 +17,11 @@ function GetString (url)
     Httpreq.send(null);
     return Httpreq.responseText;          
 }
+
 var RTScoreAndLink = JSON.parse(GetString('https://www.omdbapi.com/?apikey=' + OMDbAPIKey + '&tomatoes=true&i=' + IMDbID));
 
-TomatoURL = RTScoreAndLink.tomatoURL.replace('http://', 'https://');
+// The URL of the movie on Rotten Tomatoes
+var TomatoURL = RTScoreAndLink.tomatoURL.replace('http://', 'https://');
 
 // Create the Rotten Tomatoes button at the bottom and add italics
 var button = document.createElement("a"); // Create the <a> tag
@@ -33,8 +33,8 @@ var footer = document.getElementsByClassName("micro-button track-event")[1];
 footer.parentNode.insertBefore(button, footer.nextSibling); // Add it with the IMDB and TMDB buttons
 
 // Set the report flag's margin to 0 so it's not shoved to a new line as a result of our new button
-//var flag = document.getElementsByClassName("report-link has-icon icon-report tooltip tooltip-close-on-click cboxElement")[0];
-//flag.style.marginLeft = "0";
+var flag = document.getElementsByClassName("report-link has-icon icon-report tooltip tooltip-close-on-click cboxElement")[0];
+flag.style.marginLeft = "0";
 
 // Get the JSON from the movie's website on Rotten Tomatoes,
 // and then (and to) determine the icon type
@@ -97,7 +97,11 @@ else
 // Write the logo and percent by in the movie header field
 function AppendLogoAndPercent (logoImage)
 {
+    // The section where the score will go
     var filmHeader = document.getElementById("featured-film-header");
+
+    // Add a new line (as per request) under the film title
+    filmHeader.insertBefore(document.createElement("br"), filmHeader.children[1]);
 
     var logo = document.createElement("img");
     logo.setAttribute('src', logoImage);
@@ -111,6 +115,3 @@ function AppendLogoAndPercent (logoImage)
     percentTag.appendChild(document.createTextNode(' ' + RTScoreAndLink.Ratings[1].Value.replace('/100', '')));
     filmHeader.appendChild(percentTag);
 }
-
-// Add the perctange to the title header
-//x.children[1].innerHTML += json_obj.Ratings[1].Value;
