@@ -4,7 +4,9 @@
 
 This is a Chrome extension that adds two features to [Letterboxd](https://letterboxd.com). You can see the score & tomato type, and a button added beside the IMDB and TMDB micro-buttons at the bottom that will link you to the film's Rotten Tomato page.
 
-## Image
+**Prefer Metacritic? I have a Chrome extension for that as well, view it [here](https://github.com/WilliamWelsh/Letterboxd-Metacritic-Addon).**
+
+## Preview
 
 ![Image](https://i.imgur.com/fEHsYn1.png)
 
@@ -33,3 +35,9 @@ var OMDbAPIKey = "YOUR KEY HERE";
 Next, you need to load the unpacked extension. In Chrome, visit `chrome://extensions/`. Click "Load unpacked" and choose the directory of the repository. It should now work.
 
 ![Extensions Help](https://i.imgur.com/slc6Yst.png)
+
+## Other
+
+Feel free to follow me on Letterboxd. :D
+
+[https://letterboxd.com/WilliamW/](https://letterboxd.com/WilliamW/)
