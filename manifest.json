@@ -2,7 +2,7 @@
   "manifest_version": 2,
  
   "name": "Letterboxd Rotten Tomatoes Addon",
-  "version": "1.8",
+  "version": "1.9",
   "description": "Adds Rotten Tomatoes features to Letterboxd.com",
   
   "permissions": [

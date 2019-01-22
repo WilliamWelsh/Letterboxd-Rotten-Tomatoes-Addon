@@ -54,7 +54,7 @@ if (RTJSON.includes('mpscall['))
 
     fresh_rotten = fresh_rotten.substring(fresh_rotten.indexOf('fresh_rotten') + 17);
     fresh_rotten = fresh_rotten.substring(0, fresh_rotten.indexOf('"'));
-
+    
     if (isCertified == 1)
     {
         AppendLogoAndPercent(certifiedLogo);
@@ -65,7 +65,7 @@ if (RTJSON.includes('mpscall['))
         {
             AppendLogoAndPercent(freshLogo);
         }
-        else
+        else if (fresh_rotten == "rotten")
         {
             AppendLogoAndPercent(rottenLogo);
         }
@@ -87,7 +87,7 @@ else
         {
             AppendLogoAndPercent(freshLogo);
         }
-        else
+        else if (RTJSON['cag[fresh_rotten]'] == "rotten")
         {
             AppendLogoAndPercent(rottenLogo);
         }
